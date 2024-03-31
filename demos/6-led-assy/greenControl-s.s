@@ -9,7 +9,7 @@
 greenControl:
 	cmp #0, r12
 	jz off
-	bis #64, &P1OUT		;or
+	bis #1, &P1OUT		;or. Fixed bits by changing 64 to 1 since green is P1.0
 	pop r0
-off:	and #~64, &P1OUT
+off:	and #0, &P1OUT
 	pop r0
