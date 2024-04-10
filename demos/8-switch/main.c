@@ -34,14 +34,13 @@ switch_interrupt_handler()
 
 /* up=red, down=green */
   if (p1val & SW1) {
-    P1OUT |= LED_RED;
-    P1OUT &= ~LED_GREEN;
-  } else {
-    P1OUT |= LED_GREEN;
-    P1OUT &= ~LED_RED;
+    if(!(P1OUT & LEDS)){//this line checks if both leds is off
+      P1OUT |= LED_GREEN;//if both lights are of (the start) only turn on the green led
+    }else{//once one led is on, then the button makes them alternate
+      P1OUT ^= LEDS;
+    }
   }
 }
-
 
 /* Switch on P1 (S2) */
 void
