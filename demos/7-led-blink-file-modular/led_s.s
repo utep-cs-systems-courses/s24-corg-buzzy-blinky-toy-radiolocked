@@ -6,7 +6,9 @@
 	.global led_update
 	.extern P1OUT
 
-	.data			;initialize variables
+	.data		;initialize variables
+LEDS:
+	.byte 0
 red_on:
 	.byte 0
 green_on:
@@ -15,13 +17,20 @@ led_changed:
 	.byte 0
 redVal:
 	.byte 0
-	.byte LED_RED
+	.byte 64		;64 for red led
 greenVAL:
 	.byte 0
-	.byte LED_GREEN
+	.byte 1			;64 for green led
+	
 
 	;; Functions start here;;
+LEDS_set:
+	bis #64, &LEDS
+	bis #1, &LEDS
+	ret
+
 led_init:
+	call #LEDS_set
 	bis &LEDS, &P1DIR
 	mov #1, &led_changed
 	call #led_update
