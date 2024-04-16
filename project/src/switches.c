@@ -2,6 +2,7 @@
 #include "switches.h"
 #include "libTimer.h"
 #include "led.h"
+#include "stateMachines.h"
 
 unsigned int secondCount;//seclare external global variables
 unsigned int limit;
@@ -26,21 +27,16 @@ switch_interrupt_handler()
   char sw_4 = (p2val & S4) ? 0 : S4;
 
   if(sw_1){
-    P1OUT |= LED_GREEN;
-    P1OUT &= ~LED_RED;
+    state(1);
   }
   else if(sw_2){
-    P1OUT &= ~LEDS;
+    state(2);
   }
   else if(sw_3){
-    if(limit < 200){
-      limit = limit + 50;
-    }
+    state(3);
   }
   else if(sw_4){
-    if(limit > 50){
-      limit = limit - 50;
-    }
+    state(4);
   }
 }
   
