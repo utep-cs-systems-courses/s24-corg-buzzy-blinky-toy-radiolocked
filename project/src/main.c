@@ -4,8 +4,8 @@
 #include "switches.h"
 
 void main(void) 
-{  
-  configureClocks();
+{
+  wdt_init();
   switch_init();
   led_init();
   

@@ -32,7 +32,16 @@ switch_interrupt_handler()
     P1OUT ^= LEDS;
   }
   else if(sw_4){
-    P1OUT &= ~LEDS;
+    if(limit > 50){
+      limit = limit / 2;
+    }else{
+      limit = 250;
+    }
   }
 }
   
+void wdt_init(){
+  configureClocks();
+  enableWDTInterrupts;
+}
+
