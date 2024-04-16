@@ -3,6 +3,9 @@
 #include "libTimer.h"
 #include "led.h"
 
+unsigned int secondCount;//seclare external global variables
+unsigned int limit;
+
 void
 switch_init()
 {

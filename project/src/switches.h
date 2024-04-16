@@ -7,8 +7,8 @@
 #define S4 BIT3 //switch is in p2.3
 #define SWITCHES (S1 | S2 | S3 | S4)//only 1 switch on this board
 
-extern int limit;
-extern int secondCount;
+extern unsigned int limit;
+extern unsigned int secondCount;
 
 void switch_init();
 void switch_interrupt_handler();
