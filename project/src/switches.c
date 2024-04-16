@@ -1,5 +1,6 @@
 #include <msp430.h>
 #include "switches.h"
+#include "libTimer.h"
 #include "led.h"
 
 void
@@ -14,19 +15,24 @@ switch_init()
 void     //this is what defines what the button does
 switch_interrupt_handler()
 {
-  char p2val = P2IN; //switch is in p2
-  
-  /* update switch interrupt sense to detect changes from current buttons */
-  P2IES |= (p2val & SWITCHES);/* if switch up, sense down */
-  P2IES &= (p2val | ~SWITCHES);/* if switch down, sense up */
-  
+  char p2val = P2IN;/* switch is in P2 */
 
-  if(p2val & S1){ //its purpose is to give a blinking pattern to the green led
-    P1OUT &= ~LED_RED;
+  char sw_1 = (p2val & S1) ? 0 : S1;
+  char sw_2 = (p2val & S2) ? 0 : S2;
+  char sw_3 = (p2val & S3) ? 0 : S3;
+  char sw_4 = (p2val & S4) ? 0 : S4;
+
+  if(sw_1){
     P1OUT |= LED_GREEN;
   }
-  if(p2val & S2){
+  else if(sw_2){
     P1OUT |= LED_RED;
-    P1OUT &= ~LED_GREEN;
+  }
+  else if(sw_3){
+    P1OUT ^= LEDS;
+  }
+  else if(sw_4){
+    P1OUT &= ~LEDS;
   }
 }
+  
