@@ -27,24 +27,25 @@ switch_interrupt_handler()
 
   if(sw_1){
     P1OUT |= LED_GREEN;
+    P1OUT &= ~LED_RED;
   }
   else if(sw_2){
-    P1OUT |= LED_RED;
+    P1OUT &= ~LEDS;
   }
   else if(sw_3){
-    P1OUT ^= LEDS;
+    if(limit < 200){
+      limit = limit + 50;
+    }
   }
   else if(sw_4){
     if(limit > 50){
-      limit = limit / 2;
-    }else{
-      limit = 250;
+      limit = limit - 50;
     }
   }
 }
   
 void wdt_init(){
   configureClocks();
-  enableWDTInterrupts;
+  enableWDTInterrupts();
 }
 
