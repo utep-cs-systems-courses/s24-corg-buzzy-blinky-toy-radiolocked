@@ -5,7 +5,7 @@
 #include "buzzer.h"
 
 void state(int n){
-  switch(n){
+  switch(n){//if S buttons are pressed
   case 1:
     P1OUT |= LED_GREEN;
     P1OUT &= ~LED_RED;
