@@ -9,7 +9,6 @@
 
 extern unsigned int limit;
 extern unsigned int secondCount;
-extern unsigned int buttonPressed;
 
 void switch_init();
 void switch_interrupt_handler();

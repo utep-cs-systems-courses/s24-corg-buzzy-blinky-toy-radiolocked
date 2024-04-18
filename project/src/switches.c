@@ -6,7 +6,6 @@
 
 unsigned int secondCount;//seclare external global variables
 unsigned int limit;
-unsigned int buttonPressed;
 
 void
 switch_init()
@@ -29,19 +28,15 @@ switch_interrupt_handler()
 
   if(sw_1){
     state(1);
-    buttonPressed = 1;
   }
   else if(sw_2){
     state(2);
-    buttonPressed = 2;
   }
   else if(sw_3){
     state(3);
-    buttonPressed = 3;
   }
   else if(sw_4){
     state(4);
-    buttonPressed = 4;
   }
 }
   
