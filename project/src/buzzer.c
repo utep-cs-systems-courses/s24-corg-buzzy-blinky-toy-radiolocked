@@ -23,3 +23,10 @@ void buzzer_set_period(short cycles) /* buzzer clock = 2MHz.  (period of 1k resu
   CCR0 = cycles;
   CCR1 = cycles >> 1;/* one half cycle */
 }
+
+void delay(unsigned int milliseconds){
+  unsigned int i;
+  for(i = 0; i < milliseconds; i++){
+    __delay_cycles(2000); //delay 1 millisecond
+  }
+}
