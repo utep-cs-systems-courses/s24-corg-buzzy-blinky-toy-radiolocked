@@ -21,7 +21,30 @@ void song1(){
   buzzer_set_period(D4); delay(Q);
   buzzer_set_period(C4); delay(Q);
   //small delay before ending
-  delay(Q);
+  delay(W);
+
+  //turn off the sound;
+  buzzer_set_period(0);
+}
+
+void song2(){
+  buzzer_set_period(C4); delay(Q);
+  buzzer_set_period(D4); delay(Q);
+  buzzer_set_period(D4); delay(Q);
+  buzzer_set_period(E4); delay(Q);
+  buzzer_set_period(E4); delay(Q);
+  buzzer_set_period(F4); delay(Q);
+  buzzer_set_period(F4); delay(Q);
+  buzzer_set_period(F4); delay(Q);
+  buzzer_set_period(A4); delay(Q);
+  buzzer_set_period(B4); delay(Q);
+  buzzer_set_period(B4); delay(Q);
+  buzzer_set_period(A4); delay(Q);
+  buzzer_set_period(A4); delay(Q);
+  buzzer_set_period(G4); delay(Q);
+  buzzer_set_period(G4); delay(Q);
+  //small delay before ending
+  delay(W);
 
   //turn off the sound;
   buzzer_set_period(0);
@@ -40,6 +63,7 @@ void state(int n){
     P1OUT |= LED_RED;
     P1OUT &= ~LED_GREEN;
     limit = -1;
+    song2();
     break;
     
   case 3:
