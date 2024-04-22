@@ -50,6 +50,16 @@ void song2(){
   buzzer_set_period(0);
 }
 
+void siren(){
+  buzzer_set_period(G4);
+  delay(W);
+  P1OUT ^= LEDS;
+  //siren being silly
+  buzzer_set_period(C4);
+  delay(W);
+  P1OUT ^= LEDS;
+}
+
 void state(int n){
   switch(n){//if S buttons are pressed
   case 1:
@@ -69,7 +79,11 @@ void state(int n){
   case 3:
     P1OUT |= LED_GREEN;
     P1OUT &= ~LED_RED;
-    limit = 125; //leds will XOR all the time to simulate a siren
+    int i = 0;
+    while(i < 6){
+      siren();
+      i = i + 1;
+    }
     break;
 
   case 4: // button to do nothing
