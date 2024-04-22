@@ -60,21 +60,21 @@ void siren(){
   P1OUT ^= LEDS;
 }
 
-void silly(){
+void silly(){//silly noise being silly
   buzzer_set_period(A4);
-  P1OUT ^= LEDS;
+  P1OUT |= LEDS;
   delay(W);
   delay(W);
   buzzer_set_period(0);
-  P1OUT ^= LEDS;
+  P1OUT &= ~LEDS;
   delay(W);
   delay(W);
   buzzer_set_period(A4);
-  P1OUT ^= LEDS;
+  P1OUT |= LEDS;
   delay(W);
   delay(W);
   buzzer_set_period(0);
-  P1OUT ^= LEDS;
+  P1OUT &= ~LEDS;
 }
 
 void state(int n){
@@ -84,6 +84,7 @@ void state(int n){
     P1OUT &= ~LED_RED;
     limit = -1;
     song1();
+    P1OUT &= ~LEDS; //finish and turn off both leds
     break;
 
   case 2://button for song backwards
@@ -91,6 +92,7 @@ void state(int n){
     P1OUT &= ~LED_GREEN;
     limit = -1;
     song2();
+    P1OUT &= ~LEDS; // finish and turn off both leds
     break;
     
   case 3://button for siren
@@ -103,6 +105,7 @@ void state(int n){
     }
     delay(W);
     buzzer_set_period(0);
+    P1OUT &= ~LEDS; //finish and turn off both leds
     break;
 
   case 4: // button to do silly noise
