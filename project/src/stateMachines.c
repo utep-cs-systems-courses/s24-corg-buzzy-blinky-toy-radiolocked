@@ -60,23 +60,40 @@ void siren(){
   P1OUT ^= LEDS;
 }
 
+void silly(){
+  buzzer_set_period(A4);
+  P1OUT ^= LEDS;
+  delay(W);
+  delay(W);
+  buzzer_set_period(0);
+  P1OUT ^= LEDS;
+  delay(W);
+  delay(W);
+  buzzer_set_period(A4);
+  P1OUT ^= LEDS;
+  delay(W);
+  delay(W);
+  buzzer_set_period(0);
+  P1OUT ^= LEDS;
+}
+
 void state(int n){
   switch(n){//if S buttons are pressed
-  case 1:
+  case 1://button for song forwards
     P1OUT |= LED_GREEN;
     P1OUT &= ~LED_RED;
     limit = -1;
     song1();
     break;
 
-  case 2:
+  case 2://button for song backwards
     P1OUT |= LED_RED;
     P1OUT &= ~LED_GREEN;
     limit = -1;
     song2();
     break;
     
-  case 3:
+  case 3://button for siren
     P1OUT |= LED_GREEN;
     P1OUT &= ~LED_RED;
     int i = 0;
@@ -84,11 +101,12 @@ void state(int n){
       siren();
       i = i + 1;
     }
+    delay(W);
+    buzzer_set_period(0);
     break;
 
-  case 4: // button to do nothing
-    P1OUT &= ~LEDS;
-    limit = -1; //leds will be off all the time and no sound will play
+  case 4: // button to do silly noise
+    silly();
     break;
 
   default:
