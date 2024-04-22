@@ -2,6 +2,7 @@
 #include <msp430.h>
 #include "libTimer.h"
 #include "led.h"
+#include "stateMachines.h"
 
 int main(void) {
   configureClocks();		/* setup master oscillator, CPU & peripheral clocks */

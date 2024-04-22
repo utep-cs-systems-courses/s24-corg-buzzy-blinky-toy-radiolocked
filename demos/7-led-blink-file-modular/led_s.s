@@ -1,36 +1,27 @@
 	.arch msp430g2553
 	.p2align 1,0
-	.text
-
-	.global let_init
-	.global led_update
-	.extern P1OUT
-
-	.data		;initialize variables
-LEDS:
-	.byte 0
-red_on:
-	.byte 0
-green_on:
-	.byte 0
-led_changed:
-	.byte 0
+	.data
+	
 redVal:
 	.byte 0
 	.byte 64		;64 for red led
-greenVAL:
+greenVal:
 	.byte 0
-	.byte 1			;64 for green led
+	.byte 1
 	
+.text
+	.global let_init
+	.global led_update
+	.extern P1OUT
+	.extern LEDS
+	.extern red_on
+	.extern green_on
+	.extern led_changed
+	.extern redVal
 
 	;; Functions start here;;
-LEDS_set:
-	bis #64, &LEDS
-	bis #1, &LEDS
-	ret
 
 led_init:
-	call #LEDS_set
 	bis &LEDS, &P1DIR
 	mov #1, &led_changed
 	call #led_update
